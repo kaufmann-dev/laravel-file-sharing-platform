@@ -1,6 +1,11 @@
-# To Do
-- Projekt anlegen 
-- Design überlegen -> Mockups
-- Datenbank erstellen
-- Datenbank einbinden
-- Optional: User soll im Broswer Ordner und Files erstellen können
+# Create laravel app
+```
+composer create-project laravel/laravel example-app
+```
+# Serving laravel
+```
+php artisan serve
+```
+
+# Documentation
+[laravel.com/docs/9.x](https://laravel.com/docs/9.x)
