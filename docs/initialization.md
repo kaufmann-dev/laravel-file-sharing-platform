@@ -17,7 +17,7 @@ composer install
 ### Rename
 Rename ```.env.example``` to ```.env```
 ## Complete file
-Complete .env with credentials
+Complete ```.env``` with credentials
 ```
 DB_CONNECTION=
 DB_HOST=
