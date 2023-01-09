@@ -23,6 +23,9 @@
                     </li>
                 @else
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('fileUpload') }}">Upload Files</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('signout') }}">Logout</a>
                     </li>
                 @endguest
@@ -32,6 +35,36 @@
 </nav>
 @yield('content')
 
-<button type="button" onclick="window.location='http://127.0.0.1:8000/fupload'">Lade Files hoch</button>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>File</th>
+        </tr>
+        </thead>
+        <tbody>
+        @php
+
+        $files = DB::table("files")->get();
+
+        foreach ($files as $file)
+        {
+            @endphp
+
+            <tr>
+                <td>{{ $file->id }}</td>
+                <td><a href="{{ $file->file_path }}" download>{{ $file->name }}</a></td>
+            </tr>
+
+            @php
+        }
+
+        @endphp
+        </tbody>
+    </table>
+</div>
+
+
 </body>
 </html>
