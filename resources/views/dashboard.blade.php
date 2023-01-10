@@ -47,14 +47,17 @@
         @php
 
         $files = DB::table("files")->get();
+        $file_path = "";
 
         foreach ($files as $file)
         {
+            $file_path = $file->file_path;
+
             @endphp
 
             <tr>
                 <td>{{ $file->id }}</td>
-                <td><a href="{{ $file->file_path }}" download>{{ $file->name }}</a></td>
+                <td>{{ $file->name }}</td>
             </tr>
 
             @php
