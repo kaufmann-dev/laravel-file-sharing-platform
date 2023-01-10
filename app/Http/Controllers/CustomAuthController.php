@@ -25,7 +25,7 @@ class CustomAuthController extends Controller
                 ->withSuccess('Signed in');
         }
 
-        return redirect("login")->withSuccess('Login details are not valid');
+        return redirect("/")->withSuccess('Login details are not valid');
     }
 
     public function registration()
@@ -62,13 +62,13 @@ class CustomAuthController extends Controller
             return view('dashboard');
         }
 
-        return redirect("login")->withSuccess('You are not allowed to access');
+        return redirect("/")->withSuccess('You are not allowed to access');
     }
 
     public function signOut() {
         Session::flush();
         Auth::logout();
 
-        return Redirect('login');
+        return Redirect('/');
     }
 }
