@@ -41,6 +41,7 @@
         <tr>
             <th>ID</th>
             <th>File</th>
+            <th>Created At</th>
         </tr>
         </thead>
         <tbody>
@@ -58,6 +59,7 @@
             <tr>
                 <td>{{ $file->id }}</td>
                 <td>{{ $file->name }}</td>
+                <td>{{ $file->created_at }}</td>
             </tr>
 
             @php
