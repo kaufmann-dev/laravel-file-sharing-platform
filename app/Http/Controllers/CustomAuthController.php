@@ -9,6 +9,10 @@ class CustomAuthController extends Controller
 {
     public function index()
     {
+        if(Auth::check()){
+            return redirect("/dashboard")->withSuccess('You are already signed in');
+        }
+
         return view('auth.login');
     }
 
