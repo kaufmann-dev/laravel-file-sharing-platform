@@ -48,18 +48,17 @@
         @php
 
         $files = DB::table("files")->get();
-        $file_path = "";
 
         foreach ($files as $file)
         {
-            $file_path = $file->file_path;
-
             @endphp
 
             <tr>
                 <td>{{ $file->id }}</td>
-                <td>{{ $file->name }}</td>
-                <td>{{ date('d.m.Y', strtotime($file->created_at)) }}</td>
+                <td>
+                    <a href="{{ route('download', ['file' => $file->name]) }}">{{ $file->name }}</a>
+                </td>
+                <td>{{ date('d.m.Y G:i', strtotime($file->created_at)) }}</td>
             </tr>
 
             @php
