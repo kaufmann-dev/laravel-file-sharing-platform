@@ -10,13 +10,13 @@ class FileUpload extends Controller
     }
     public function fileUpload(Request $req){
         $req->validate([
-            'file' => 'required|mimes:csv,webp,jpeg,gif,jpg,png,txt,xlx,xls,pdf,docx|max:8192'
+            'file' => 'required|max:8192'
         ]);
         $fileModel = new File;
         if($req->file()) {
-            $fileName = time().'_'.$req->file->getClientOriginalName();
+            $fileName = $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
-            $fileModel->name = time().'_'.$req->file->getClientOriginalName();
+            $fileModel->name = $req->file->getClientOriginalName();
             $fileModel->user_id = auth()->user()->id;
             $fileModel->file_path = '/storage/app/public/' . $filePath;
             $fileModel->save();

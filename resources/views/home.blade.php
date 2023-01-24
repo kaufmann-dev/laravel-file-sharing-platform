@@ -29,8 +29,8 @@
                         </td>
                         <td>{{ date("d.m.Y G:i", strtotime($file->created_at)) }}</td>
                         <td>
-                            <a href="{{ route('download', ['file' => $file->id]) }}" class="btn btn-success">Download</a>
-                            <a href="{{ route('delete', ['file' => $file->id]) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('download', ['file' => $file->id]) }}" class="btn btn-success btn-sm">Download</a>
+                            <a href="{{ route('delete', ['file' => $file->id]) }}" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
 
