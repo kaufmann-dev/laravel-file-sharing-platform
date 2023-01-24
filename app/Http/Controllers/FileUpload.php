@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\File;
+
 class FileUpload extends Controller
 {
     public function createForm(){
@@ -17,7 +18,6 @@ class FileUpload extends Controller
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->name = time().'_'.$req->file->getClientOriginalName();
             $fileModel->file_path = '/storage/app/public/' . $filePath;
-            $fileModel->user_id = auth()->user()->id;
             $fileModel->save();
             return back()
                 ->with('success','File has been uploaded.')

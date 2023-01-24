@@ -1,10 +1,11 @@
 <?php
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
-use \App\Http\Controllers\CustomAuthController;
-use App\Http\Controllers\FileUpload;
-use App\Http\Controllers\DownloadFilesController;
 
+use App\Http\Controllers\DownloadFilesController;
+use App\Http\Controllers\FileUpload;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
+Auth::routes();
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,14 +17,11 @@ use App\Http\Controllers\DownloadFilesController;
 |
 */
 
-// Registration/Login/Logout
-Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name("dashboard");
-Route::get('/', [CustomAuthController::class, 'index'])->name("index");
-Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
-Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
-Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
-Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
-Route::get('customauth', [CustomAuthController::class, 'index']);
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Dateien hochladen
 Route::get('/upload-file', [FileUpload::class, 'createForm']);
