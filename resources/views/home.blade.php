@@ -19,6 +19,17 @@
 
                 $files = DB::table("files")->where("user_id", Auth::id())->get();
 
+                if($files->count() == 0)
+                {
+                    @endphp
+
+                    <tr>
+                        <td colspan="3" class="text-center">No files found</td>
+                    </tr>
+
+                    @php
+                }
+
                 foreach ($files as $file)
                 {
                     @endphp
