@@ -17,7 +17,7 @@
 
                 @php
 
-                $files = DB::table("files")->get();
+                $files = DB::table("files")->where("user_id", Auth::id())->get();
 
                 foreach ($files as $file)
                 {
@@ -26,7 +26,7 @@
                     <tr>
                         <td>{{ $file->id }}</td>
                         <td>
-                            <a href="{{ route("download", ["file" => $file->name]) }}">{{ $file->name }}</a>
+                            <a href="{{ route('download', ['file' => $file->name]) }}">{{ $file->name }}</a>
                         </td>
                         <td>{{ date("d.m.Y G:i", strtotime($file->created_at)) }}</td>
                     </tr>
