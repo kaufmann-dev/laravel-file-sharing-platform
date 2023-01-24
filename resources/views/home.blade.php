@@ -24,7 +24,7 @@
                     @endphp
 
                     <tr>
-                        <td colspan="3" class="text-center">No files found</td>
+                        <td colspan="3" class="text-center">No files found · <a href="{{ route('fileUpload') }}">Start uploading</a></td>
                     </tr>
 
                     @php
