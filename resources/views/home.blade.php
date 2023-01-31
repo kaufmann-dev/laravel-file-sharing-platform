@@ -7,7 +7,7 @@
             <table class="table table-striped" id="dataTable">
                 <thead>
                 <tr>
-                    <th onclick="sortTable(0)">File</th>
+                    <th onclick="sortTableName(0)">File</th>
                     <th>Date</th>
                     <th>Actions</th>
                 </tr>
@@ -52,7 +52,7 @@
                 </tbody>
             </table>
             <script>
-                function sortTable(n) {
+                function sortTableName(n) {
                     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
                     table = document.getElementById("dataTable");
                     switching = true;
@@ -87,7 +87,7 @@
                             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                             switching = true;
                             // Each time a switch is done, increase this count by 1:
-                            switchcount ++;
+                            switchcount++;
                         } else {
                             if (switchcount == 0 && dir == "asc") {
                                 dir = "desc";
