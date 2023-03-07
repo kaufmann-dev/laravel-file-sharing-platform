@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\DownloadFilesController;
+use App\Http\Controllers\FilesController;
 use App\Http\Controllers\FileUpload;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 Auth::routes();
 /*
@@ -24,14 +25,17 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Dateien hochladen
 Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
 
 // Dateien herunterladen
-Route::get('download/{file}', [DownloadFilesController::class, "download"])->name("download");
+Route::get('download/{id}', [FilesController::class, "download"])->name("download");
 
 // Dateien löschen
-Route::get('delete/{file}', [DownloadFilesController::class, "delete"])->name("delete");
+Route::get('delete/{id}', [FilesController::class, "delete"])->name("delete");
+
+// Dateien teilen
+Route::post('share/{id}', [FilesController::class, "share"])->name("share");
