@@ -6,14 +6,15 @@
         <div class="col-md-8">
             <table class="table table-striped" id="dataTable">
                 <thead>
-                <tr>
-                    <th onclick="sortTableName(0)">File</th>
-                    <th>Size</th>
+                    <th onclick="sortTableName(0)">File  <img src="{{ asset('vendor/blade-lucide-icons/arrow-up-down.svg') }}" width="18" height="18"/>
+                    <th onclick="sortTableName(1)">Type  <img src="{{ asset('vendor/blade-lucide-icons/arrow-up-down.svg') }}" width="18" height="18"/>
+                    <th>Size</th></th>
                     <th>Date</th>
                     <th>Actions</th>
-                </tr>
+                    </tr>
                 </thead>
                 <tbody>
+
 
                 @php
 
@@ -32,14 +33,34 @@
                     @php
                 }
 
+
+
                 foreach ($files as $file)
                 {
+
                     @endphp
 
                     <tr>
                         <td>
                             {{ $file->name }}
                         </td>
+                        <td>@php
+                                if (file_exists("../storage/app/public/uploads/")) {
+
+                                      foreach (scandir("../storage/app/public/uploads/") as $fileExt) {
+                                            $fileinfo[] = pathinfo('../storage/app/public/uploads/'."/".$fileExt);
+                                       }
+
+                                       foreach ($fileinfo as $item){
+                                           if ($item['basename'] == $file->name){
+                                                print_r($item['extension']);
+                                                break;
+
+                                           }
+                                       }
+ }
+
+                        @endphp</td>
                         <td>{{ $file->file_size }} Bytes</td>
                         <td>{{ date("d.m.Y G:i", strtotime($file->created_at)) }}</td>
                         <td>
@@ -47,6 +68,7 @@
                             <a href="{{ route('delete', ['id' => $file->id]) }}" class="btn btn-danger btn-sm">Delete</a>
                             <a href="javascript:void(0);" onclick="shareFile('{{ $file->id }}')" class="btn btn-info btn-sm">Share</a>
                         </td>
+
                     </tr>
 
                     @php
@@ -80,7 +102,7 @@
                     while (switching) {
                         switching = false;
                         rows = table.rows;
-                        /* Loop through all table rows starting at 2nd row */
+                        // Loop through all table rows starting at 2nd row
                         for (i = 1; i < (rows.length - 1); i++) {
                             // Start by saying there should be no switching:
                             shouldSwitch = false;
@@ -102,8 +124,7 @@
                             }
                         }
                         if (shouldSwitch) {
-                            /* If a switch has been marked, make the switch
-                            and mark that a switch has been done: */
+                            // If a switch has been marked, make the switch and mark that a switch has been done:
                             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                             switching = true;
                             // Each time a switch is done, increase this count by 1:
@@ -117,7 +138,13 @@
                     }
                 }
             </script>
+
         </div>
     </div>
+
+    <div>
+
+    </div>
+
 </div>
 @endsection
