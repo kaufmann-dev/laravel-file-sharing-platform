@@ -75,6 +75,7 @@
 
                 </tbody>
             </table>
+            <a href="/upload-file"><button class="btn btn-primary">Upload</button></a>
             <script>
                 function shareFile(id) {
                     email = window.prompt('Enter the email address to share:');
