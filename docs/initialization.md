@@ -1,4 +1,9 @@
 # Project initialization
+## Make sure php_fileinfo.dll is enabled
+Enable the extension in ```php.ini```
+```
+extension=php_fileinfo.dll
+```
 ## Load missing project files
 ```
 cd 02_filesharing
