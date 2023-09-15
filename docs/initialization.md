@@ -1,8 +1,12 @@
 # Project initialization
-## Make sure php_fileinfo.dll is enabled
-Enable the extension in ```php.ini```
+## Make sure need PHP extensions are enabled
+Enable the extensions in ```php.ini```
 ```
+// for composer to work
 extension=php_fileinfo.dll
+
+// for migrations to work
+extension=php_pdo_mysql.dll
 ```
 ## Load missing project files
 ```
