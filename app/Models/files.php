@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class files extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'filename',
+        'created',
+        'edited',
+        'file_id',
+        'folder_id'
+    ];
 }
