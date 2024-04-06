@@ -1,14 +1,12 @@
 <?php
 use Illuminate\Support\Facades\Route;
-//use app\Http\Controllers\CustomAuthController;
-/*
- * use App\Http\Controllers\InvoiceController; // InvoiceController is controller name
-
-Route::get('invoice',[InvoiceController::class, 'index']);
- * */
 
 use \App\Http\Controllers\CustomAuthController;
 Route::get('customauth', [CustomAuthController::class, 'index']);
+
+use \App\Http\Controllers\FileUploadController;
+Route::get('file/upload', [FileUploadController::class, 'create']);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +19,7 @@ Route::get('customauth', [CustomAuthController::class, 'index']);
 |
 */
 
-
+// Registration/Login/Logout
 Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
@@ -29,8 +27,14 @@ Route::get('registration', [CustomAuthController::class, 'registration'])->name(
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
+// FileUploading
+Route::get('file/upload', [FileUploadController::class, 'create'])->name('file.create');
+Route::get('file/upload', [FileUploadController::class, 'store'])->name('file.store');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
