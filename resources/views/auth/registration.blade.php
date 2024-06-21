@@ -46,7 +46,7 @@
                     </div>
                     <div id="register" class="text-muted mb-3">
                         Schon registriert?
-                        <a href="{{ route('login') }}" class="text-decoration-none">Login</a>
+                        <a href="{{ route("index") }}" class="text-decoration-none">Login</a>
                     </div>
                     <div class="d-grid mx-auto">
                         <button type="submit" class="btn btn-dark btn-block">Sign up</button>

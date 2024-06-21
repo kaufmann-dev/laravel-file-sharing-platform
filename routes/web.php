@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\FileUpload;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\FileUpload;
 
 // Registration/Login/Logout
 Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name("dashboard");
-Route::get('/', [CustomAuthController::class, 'index']);
+Route::get('/', [CustomAuthController::class, 'index'])->name("index");
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');

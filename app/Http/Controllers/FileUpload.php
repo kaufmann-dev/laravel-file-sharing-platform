@@ -16,7 +16,7 @@ class FileUpload extends Controller
             $fileName = time().'_'.$req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
             $fileModel->name = time().'_'.$req->file->getClientOriginalName();
-            $fileModel->file_path = '/storage/public/' . $filePath;
+            $fileModel->file_path = 'storage/public/' . $filePath;
             $fileModel->save();
             return back()
                 ->with('success','File has been uploaded.')
