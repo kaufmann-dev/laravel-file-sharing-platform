@@ -41,7 +41,7 @@
         <tr>
             <th>ID</th>
             <th>File</th>
-            <th>Created At</th>
+            <th>Uploaded At</th>
         </tr>
         </thead>
         <tbody>
@@ -59,7 +59,7 @@
             <tr>
                 <td>{{ $file->id }}</td>
                 <td>{{ $file->name }}</td>
-                <td>{{ $file->created_at }}</td>
+                <td>{{ date('d.m.Y', strtotime($file->created_at)) }}</td>
             </tr>
 
             @php
