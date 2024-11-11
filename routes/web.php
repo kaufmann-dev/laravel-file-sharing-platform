@@ -1,8 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use \App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\FileUpload;
-use App\Http\Controllers\FileController;
+use App\Http\Controllers\DownloadFilesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,6 @@ Route::get('customauth', [CustomAuthController::class, 'index']);
 // Dateien hochladen
 Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload');
+
+// Dateien herunterladen
+Route::get('download/{file}', [DownloadFilesController::class, "download"])->name("download");
