@@ -47,7 +47,7 @@
         <tbody>
         @php
 
-        $files = DB::table("files")->get();
+        $files = DB::table("files")->where("user_id", Auth::id())->get();
 
         foreach ($files as $file)
         {
