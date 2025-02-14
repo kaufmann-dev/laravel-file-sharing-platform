@@ -8,11 +8,6 @@ class File extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'user_id',
         'file_path'
     ];
-
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
 }
