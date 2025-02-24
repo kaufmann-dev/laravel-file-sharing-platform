@@ -23,7 +23,7 @@
                 <input type="file" name="file" class="form-control" id="formFile">
             </div>
             @if($message = Session::get("success"))
-                <a href="{{ route("home") }}" class="btn btn-secondary mt-4">
+                <a href="{{ route('home') }}" class="btn btn-secondary mt-4">
                     Go back to dashboard
                 </a>
             @else
