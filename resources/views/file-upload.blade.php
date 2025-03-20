@@ -12,7 +12,7 @@
             @endif
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
-                    <ul>
+                    <ul class="mb-0">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -24,7 +24,7 @@
             </div>
             @if($message = Session::get("success"))
                 <a href="{{ route('home') }}" class="btn btn-secondary mt-4">
-                    Go back to dashboard
+                    Home
                 </a>
             @else
                 <button type="submit" name="submit" class="btn btn-primary mt-4">

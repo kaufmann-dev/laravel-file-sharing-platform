@@ -10,7 +10,7 @@ class FileUpload extends Controller
     }
     public function fileUpload(Request $req){
         $req->validate([
-            'file' => 'required|mimes:csv,webp,jpeg,gif,jpg,png,txt,xlx,xls,pdf,docx|max:2048'
+            'file' => 'required|mimes:csv,webp,jpeg,gif,jpg,png,txt,xlx,xls,pdf,docx|max:8192'
         ]);
         $fileModel = new File;
         if($req->file()) {

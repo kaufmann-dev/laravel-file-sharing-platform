@@ -8,9 +8,9 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Uploaded at</th>
+                    <th>File</th>
+                    <th>Date</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -24,11 +24,14 @@
                     @endphp
 
                     <tr>
-                        <td>{{ $file->id }}</td>
                         <td>
-                            <a href="{{ route('download', ['file' => $file->name]) }}">{{ $file->name }}</a>
+                            {{ $file->name }}
                         </td>
                         <td>{{ date("d.m.Y G:i", strtotime($file->created_at)) }}</td>
+                        <td>
+                            <a href="{{ route('download', ['file' => $file->id]) }}" class="btn btn-success">Download</a>
+                            <a href="{{ route('delete', ['file' => $file->id]) }}" class="btn btn-danger">Delete</a>
+                        </td>
                     </tr>
 
                     @php

@@ -18,6 +18,9 @@ Auth::routes();
 */
 
 Route::get('/', function () {
+    if(Auth::check()){
+        return redirect("/home")->withSuccess('You are already signed in');
+    }
     return view('auth.login');
 });
 
@@ -29,3 +32,6 @@ Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload
 
 // Dateien herunterladen
 Route::get('download/{file}', [DownloadFilesController::class, "download"])->name("download");
+
+// Dateien löschen
+Route::get('delete/{file}', [DownloadFilesController::class, "delete"])->name("delete");
