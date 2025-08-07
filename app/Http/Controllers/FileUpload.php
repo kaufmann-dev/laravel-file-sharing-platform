@@ -19,6 +19,7 @@ class FileUpload extends Controller
             $fileModel->name = $req->file->getClientOriginalName();
             $fileModel->user_id = auth()->user()->id;
             $fileModel->file_path = '/storage/app/public/' . $filePath;
+            $fileModel->file_size = $req->file->getSize();
             $fileModel->save();
             return back()
                 ->with('success','File has been uploaded.')
