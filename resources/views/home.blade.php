@@ -8,6 +8,7 @@
                 <thead>
                 <tr>
                     <th onclick="sortTableName(0)">File</th>
+                    <th>Size</th>
                     <th>Date</th>
                     <th>Actions</th>
                 </tr>
@@ -37,6 +38,7 @@
                         <td>
                             {{ $file->name }}
                         </td>
+                        <td>{{ $file->file_size }} Bytes</td>
                         <td>{{ date("d.m.Y G:i", strtotime($file->created_at)) }}</td>
                         <td>
                             <a href="{{ route('download', ['file' => $file->id]) }}" class="btn btn-success btn-sm">Download</a>
