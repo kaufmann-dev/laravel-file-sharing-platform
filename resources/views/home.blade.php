@@ -7,11 +7,12 @@
             <table class="table table-striped" id="dataTable">
                 <thead>
                 <tr>
-                    <th onclick="sortTableName(0)">File</th>
+                    <th onclick="sortTableName(0)">File<i class="bi bi-arrow-down-up"></i></th>
+                    <th>Type</th>
                     <th>Size</th>
                     <th>Date</th>
                     <th>Actions</th>
-                </tr>
+                    </tr>
                 </thead>
                 <tbody>
 
@@ -29,25 +30,31 @@
 
                     @php
                 }
-
                 foreach ($files as $file)
                 {
+                             foreach (scandir("../storage/app/public/uploads/") as $fileExt) {
+                            $fileinfo = pathinfo('../storage/app/public/uploads/'."/".$fileExt);
+                             }
+
                     @endphp
 
                     <tr>
                         <td>
                             {{ $file->name }}
                         </td>
+                        <td>@php var_dump($fileinfo['extension']);  @endphp</td>
                         <td>{{ $file->file_size }} Bytes</td>
                         <td>{{ date("d.m.Y G:i", strtotime($file->created_at)) }}</td>
                         <td>
                             <a href="{{ route('download', ['file' => $file->id]) }}" class="btn btn-success btn-sm">Download</a>
                             <a href="{{ route('delete', ['file' => $file->id]) }}" class="btn btn-danger btn-sm">Delete</a>
                         </td>
+
                     </tr>
 
                     @php
-                }
+
+                    }
 
                 @endphp
 
@@ -62,7 +69,7 @@
                     while (switching) {
                         switching = false;
                         rows = table.rows;
-                        /* Loop through all table rows starting at 2nd row */
+                        // Loop through all table rows starting at 2nd row
                         for (i = 1; i < (rows.length - 1); i++) {
                             // Start by saying there should be no switching:
                             shouldSwitch = false;
@@ -84,8 +91,7 @@
                             }
                         }
                         if (shouldSwitch) {
-                            /* If a switch has been marked, make the switch
-                            and mark that a switch has been done: */
+                            // If a switch has been marked, make the switch and mark that a switch has been done:
                             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                             switching = true;
                             // Each time a switch is done, increase this count by 1:
@@ -99,7 +105,13 @@
                     }
                 }
             </script>
+
         </div>
     </div>
+
+    <div>
+
+    </div>
+
 </div>
 @endsection
