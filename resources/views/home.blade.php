@@ -6,15 +6,15 @@
         <div class="col-md-8">
             <table class="table table-striped" id="dataTable">
                 <thead>
-                <tr>
-                    <th onclick="sortTableName(0)">File<i class="bi bi-arrow-down-up"></i></th>
-                    <th>Type</th>
-                    <th>Size</th>
+                    <th onclick="sortTableName(0)">File  <img src="{{ asset('vendor/blade-lucide-icons/arrow-up-down.svg') }}" width="18" height="18"/>
+                    <th onclick="sortTableName(1)">Type  <img src="{{ asset('vendor/blade-lucide-icons/arrow-up-down.svg') }}" width="18" height="18"/>
+                    <th>Size</th></th>
                     <th>Date</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
+
 
                 @php
 
@@ -30,11 +30,11 @@
 
                     @php
                 }
+
+
+
                 foreach ($files as $file)
                 {
-                             foreach (scandir("../storage/app/public/uploads/") as $fileExt) {
-                            $fileinfo = pathinfo('../storage/app/public/uploads/'."/".$fileExt);
-                             }
 
                     @endphp
 
@@ -42,7 +42,19 @@
                         <td>
                             {{ $file->name }}
                         </td>
-                        <td>@php var_dump($fileinfo['extension']);  @endphp</td>
+                        <td>@php
+                               foreach (scandir("../storage/app/public/uploads/") as $fileExt) {
+                                    $fileinfo[] = pathinfo('../storage/app/public/uploads/'."/".$fileExt);
+                               }
+
+                               foreach ($fileinfo as $item){
+                                   if ($item['basename'] == $file->name){
+                                        print_r($item['extension']);
+                                        break;
+
+                                   }
+                               }
+                        @endphp</td>
                         <td>{{ $file->file_size }} Bytes</td>
                         <td>{{ date("d.m.Y G:i", strtotime($file->created_at)) }}</td>
                         <td>
@@ -53,8 +65,7 @@
                     </tr>
 
                     @php
-
-                    }
+                }
 
                 @endphp
 
