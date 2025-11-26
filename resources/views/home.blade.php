@@ -43,17 +43,21 @@
                             {{ $file->name }}
                         </td>
                         <td>@php
-                               foreach (scandir("../storage/app/public/uploads/") as $fileExt) {
-                                    $fileinfo[] = pathinfo('../storage/app/public/uploads/'."/".$fileExt);
-                               }
+                                if (file_exists("../storage/app/public/uploads/")) {
 
-                               foreach ($fileinfo as $item){
-                                   if ($item['basename'] == $file->name){
-                                        print_r($item['extension']);
-                                        break;
+                                      foreach (scandir("../storage/app/public/uploads/") as $fileExt) {
+                                            $fileinfo[] = pathinfo('../storage/app/public/uploads/'."/".$fileExt);
+                                       }
 
-                                   }
-                               }
+                                       foreach ($fileinfo as $item){
+                                           if ($item['basename'] == $file->name){
+                                                print_r($item['extension']);
+                                                break;
+
+                                           }
+                                       }
+ }
+
                         @endphp</td>
                         <td>{{ $file->file_size }} Bytes</td>
                         <td>{{ date("d.m.Y G:i", strtotime($file->created_at)) }}</td>
