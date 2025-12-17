@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\File;
+use App\Models\UserHasFiles;
 
 class FileUpload extends Controller
 {
@@ -12,7 +13,10 @@ class FileUpload extends Controller
         $req->validate([
             'file' => 'required|max:8192'
         ]);
+
         $fileModel = new File;
+        $userHasFilesModel = new UserHasFiles;
+
         if($req->file()) {
             $fileName = $req->file->getClientOriginalName();
             $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
@@ -21,6 +25,12 @@ class FileUpload extends Controller
             $fileModel->file_path = '/storage/app/public/' . $filePath;
             $fileModel->file_size = $req->file->getSize();
             $fileModel->save();
+
+            $userHasFilesModel->create([
+                'USER_ID' => auth()->user()->id,
+                'FILE_ID' => $fileModel->id
+            ]);
+
             return back()
                 ->with('success','File has been uploaded.')
                 ->with('file', $fileName);

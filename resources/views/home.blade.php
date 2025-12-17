@@ -17,14 +17,16 @@
 
                 @php
 
-                $files = DB::table("files")->where("user_id", Auth::id())->get();
+                $relationships = DB::table("USER_has_FILES_JT")->where('USER_ID', Auth::id())->get();
+                $fileIds = $relationships->pluck('FILE_ID')->toArray();
+                $files = DB::table("files")->where('id', $fileIds)->get();
 
                 if($files->count() == 0)
                 {
                     @endphp
 
                     <tr>
-                        <td colspan="3" class="text-center">No files found · <a href="{{ route('fileUpload') }}">Start uploading</a></td>
+                        <td colspan="4" class="text-center">No files found · <a href="{{ route('fileUpload') }}">Start uploading</a></td>
                     </tr>
 
                     @php
@@ -41,8 +43,9 @@
                         <td>{{ $file->file_size }} Bytes</td>
                         <td>{{ date("d.m.Y G:i", strtotime($file->created_at)) }}</td>
                         <td>
-                            <a href="{{ route('download', ['file' => $file->id]) }}" class="btn btn-success btn-sm">Download</a>
-                            <a href="{{ route('delete', ['file' => $file->id]) }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{{ route('download', ['id' => $file->id]) }}" class="btn btn-success btn-sm">Download</a>
+                            <a href="{{ route('delete', ['id' => $file->id]) }}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="javascript:void(0);" onclick="shareFile('{{ $file->id }}')" class="btn btn-info btn-sm">Share</a>
                         </td>
                     </tr>
 
@@ -54,6 +57,21 @@
                 </tbody>
             </table>
             <script>
+                function shareFile(id) {
+                    email = window.prompt('Enter the email address to share:');
+
+                    fetch("share/" + id, {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                        })
+                    });
+                }
+
                 function sortTableName(n) {
                     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
                     table = document.getElementById("dataTable");
