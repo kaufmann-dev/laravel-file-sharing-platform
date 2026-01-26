@@ -20,60 +20,57 @@
 
                 $relationships = DB::table("USER_has_FILES_JT")->where('USER_ID', Auth::id())->get();
                 $fileIds = $relationships->pluck('FILE_ID')->toArray();
-                $files = DB::table("files")->where('id', $fileIds)->get();
+                $files = DB::table("files")->whereIn('id', $fileIds)->get();
 
                 if($files->count() == 0)
                 {
                     @endphp
 
                     <tr>
-                        <td colspan="4" class="text-center">No files found · <a href="{{ route('fileUpload') }}">Start uploading</a></td>
+                        <td colspan="5" class="text-center">No files found · <a href="{{ route('fileUpload') }}">Start uploading</a></td>
                     </tr>
 
                     @php
                 }
 
-
-
                 foreach ($files as $file)
                 {
-
                     @endphp
 
                     <tr>
                         <td>
                             {{ $file->name }}
                         </td>
-                        <td>@php
+                        <td>
+                            @php
                                 if (file_exists("../storage/app/public/uploads/")) {
-
-                                      foreach (scandir("../storage/app/public/uploads/") as $fileExt) {
-                                            $fileinfo[] = pathinfo('../storage/app/public/uploads/'."/".$fileExt);
-                                       }
-
-                                       foreach ($fileinfo as $item){
-                                           if ($item['basename'] == $file->name){
-                                                print_r($item['extension']);
-                                                break;
-
-                                           }
-                                       }
- }
-
-                        @endphp</td>
-                        <td>{{ $file->file_size }} Bytes</td>
-                        <td>{{ date("d.m.Y G:i", strtotime($file->created_at)) }}</td>
+                                    foreach (scandir("../storage/app/public/uploads/") as $fileExt) {
+                                        $fileinfo[] = pathinfo('../storage/app/public/uploads/'."/".$fileExt);
+                                    }
+                                    foreach ($fileinfo as $item){
+                                        if ($item['basename'] == $file->name){
+                                            print_r($item['extension']);
+                                            break;
+                                        }
+                                    }
+                                }
+                            @endphp
+                        </td>
+                        <td>
+                            {{ $file->file_size }} Bytes
+                        </td>
+                        <td>
+                            {{ date("d.m.Y G:i", strtotime($file->created_at)) }}
+                        </td>
                         <td>
                             <a href="{{ route('download', ['id' => $file->id]) }}" class="btn btn-success btn-sm">Download</a>
                             <a href="{{ route('delete', ['id' => $file->id]) }}" class="btn btn-danger btn-sm">Delete</a>
                             <a href="javascript:void(0);" onclick="shareFile('{{ $file->id }}')" class="btn btn-info btn-sm">Share</a>
                         </td>
-
                     </tr>
 
                     @php
                 }
-
                 @endphp
 
                 </tbody>
