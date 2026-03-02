@@ -2,7 +2,7 @@
 
 A secure, intuitive, and efficient file-sharing platform built with Laravel. This application provides users with a central dashboard to manage, share, and organize their digital assets seamlessly.
 
-## 🚀 Key Features
+## Key Features
 
 - **User Authentication**: Secure registration, login, and password recovery.
 - **File Management**: Simple interface to upload, download, and delete files.
@@ -10,14 +10,14 @@ A secure, intuitive, and efficient file-sharing platform built with Laravel. Thi
 - **Dashboard**: A clean, sortable overview of all uploaded and shared files.
 - **Professional Design**: Designed for responsiveness and ease of use with Bootstrap 5.
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 - **Backend**: [Laravel](https://laravel.com/) (PHP 8.3+)
 - **Frontend**: [Vite](https://vitejs.dev/), Bootstrap 5, and SCSS
 - **Database**: Supports SQLite, MySQL, and PostgreSQL (SQLite used for local dev)
 - **Icons**: Bootstrap Icons
 
-## ⚙️ Local Setup Guide
+## Local Setup Guide
 
 Follow these steps to set up the project on your local machine:
 
@@ -63,7 +63,7 @@ php artisan serve
 ```
 The application will be accessible at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-## � Project Structure
+## Project Structure
 
 - `app/Http/Controllers`: Application logic and request handling.
 - `app/Models`: Database models and relationships.
