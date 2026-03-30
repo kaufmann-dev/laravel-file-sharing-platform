@@ -70,6 +70,3 @@ The application will be accessible at [http://127.0.0.1:8000](http://127.0.0.1:8
 - `resources/views`: Blade templates for the frontend.
 - `resources/sass`: Custom SCSS styles.
 - `database/migrations`: Database schema definitions.
-
----
-Built with Laravel.
